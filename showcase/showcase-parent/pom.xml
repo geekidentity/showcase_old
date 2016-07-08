@@ -6,4 +6,139 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>showcase-parent</artifactId>
+  
+  <properties>
+		<spring.version>4.2.6.RELEASE</spring.version>
+		<hibernate.version>5.1.0.Final</hibernate.version>
+	</properties>
+	<!-- 在dependencyManagement元素下的依赖声明不会引入实际的依赖，不过它能够约束dependencies下的依赖使用 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.0.1</version>
+			</dependency>
+
+			<!-- Spring BEGIN -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-websocket</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<!-- Spring END -->
+
+			<!-- JSON BEGIN -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.6.6</version>
+			</dependency>
+			<!-- JSON END -->
+
+
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.29</version>
+			</dependency>
+
+
+			<!-- Hibernate BEGIN -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<!-- Hibernate END -->
+
+			<!-- Commons项目中用来处理Java基本对象方法的工具类包，可以简化很多平时经常要用到的写法 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.4</version>
+			</dependency>
+
+			<!-- Util BEGIN -->
+			<dependency>
+				<groupId>org.fusesource</groupId>
+				<artifactId>sigar</artifactId>
+				<version>1.6.4</version>
+			</dependency>
+			<!-- Util END -->
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<!-- Maven私服配置 BEGIN -->
+	<!-- 配置本项目仓库 -->
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://211.87.147.138:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<!-- 配置本项目插件仓库 -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://211.87.147.138:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	<!-- Maven私服配置 END -->
+	<packaging>pom</packaging>
 </project>

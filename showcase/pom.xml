@@ -11,5 +11,6 @@
 		<module>showcase-web</module>
 		<module>showcase-restful</module>
 		<module>showcase-parent</module>
+		<module>showcase-api</module>
 	</modules>
 </project>
