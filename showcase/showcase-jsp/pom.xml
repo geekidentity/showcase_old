@@ -19,9 +19,9 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-			</dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -29,5 +29,20 @@
 	</dependencies>
 	<build>
 		<finalName>showcase-jsp</finalName>
+		<plugins>
+			<!-- Jetty的动态布置跟shi一样烂，不要用 -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.8.v20150217</version>
+				<configuration>
+					<!-- 表示该Jetty扫描项目变更的时间，默认为0，表示不扫描 -->
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webAppConfig>
+						<contextPath>/airplane</contextPath>
+					</webAppConfig>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>
