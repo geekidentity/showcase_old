@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.justdoit.showcase.base.entity.BaseEntity;
 
 /**
@@ -40,6 +41,7 @@ public class APIEntity extends BaseEntity<Long> {
 	private String others;
 	private Integer deprecated;
 	
+	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name="api_modules_id")
 	private APIModule apiModule;
