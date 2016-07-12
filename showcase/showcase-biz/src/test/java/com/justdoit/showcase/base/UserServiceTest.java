@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,7 @@ public class UserServiceTest extends BaseTest {
 
 	@Autowired
 	private UserService userService;
+	@Ignore
 	@Test
 	public void findByParamsTest() {
 		Map<String, String> params = new HashMap<>();
@@ -26,7 +28,5 @@ public class UserServiceTest extends BaseTest {
 			System.out.println(e);
 		}
 	}
-	
-	
 
 }
