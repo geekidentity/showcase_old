@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import com.justdoit.showcase.base.entity.BaseEntity;
 
 @Entity
-public class Employee extends BaseEntity<Integer> {
+public class Employee extends BaseEntity<Long> {
 
 	/**
 	 * 
