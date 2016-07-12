@@ -41,6 +41,7 @@
     <finalName>showcase-api</finalName>
     
     <plugins>
+    		
 			<!-- Jetty的动态布置跟shi一样烂，不要用 -->
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
@@ -54,6 +55,21 @@
 					</webAppConfig>
 				</configuration>
 			</plugin>
+			
+			<!-- 实现tomcat7/8热部署 -->
+			<!-- BEGIN -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://10.18.34.234:8080/manager/text</url>
+					<username>justdoit</username>
+					<password>justdoit</password>
+					<path>/${project.artifactId}</path>
+				</configuration>
+			</plugin>
+			<!-- END -->
 		</plugins>
   </build>
 </project>
