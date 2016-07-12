@@ -7,6 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>showcase-parent</artifactId>
+	<packaging>pom</packaging>
 
 	<properties>
 		<spring.version>4.2.6.RELEASE</spring.version>
@@ -151,7 +152,8 @@
 		<repository>
 			<id>nexus</id>
 			<name>Nexus</name>
-			<url>http://211.87.147.138:8081/nexus/content/groups/public/</url>
+			<!-- <url>http://211.87.147.138:8081/nexus/content/groups/public/</url> -->
+			<url>http://10.18.34.234:8081/nexus/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -165,7 +167,8 @@
 		<pluginRepository>
 			<id>nexus</id>
 			<name>Nexus</name>
-			<url>http://211.87.147.138:8081/nexus/content/groups/public/</url>
+			<!-- <url>http://211.87.147.138:8081/nexus/content/groups/public/</url> -->
+			<url>http://10.18.34.234:8081/nexus/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -175,5 +178,5 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<!-- Maven私服配置 END -->
-	<packaging>pom</packaging>
+
 </project>
