@@ -109,6 +109,19 @@
 		</dependencies>
 	</dependencyManagement>
 	
+	<distributionManagement>
+		<!-- 发布项目的地址 -->
+		<repository>
+			<id>JustDoIT</id>
+			<name>JustDoIT release repository</name>
+			<url>http://10.18.34.234:8081/nexus/content/repositories/justdoit-release/</url>
+		</repository>
+		<snapshotRepository>
+			<id>JustDoIT</id>
+			<name>JustDoIT snapshot repository</name>
+			<url>http://10.18.34.234:8081/nexus/content/repositories/justdoit-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<build>
 		<plugins>
 			<!-- 工程编码插件 -->
