@@ -31,7 +31,7 @@ import com.justdoit.showcase.base.service.BaseService;
 public abstract class BaseController<T extends BaseEntity<Long>, Service extends BaseService<T, ?>> {
 	
 	@Autowired
-	private Service service;
+	protected Service service;
 	
 	/**
 	 * 默认主页
