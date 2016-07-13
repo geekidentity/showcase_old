@@ -1,5 +1,6 @@
 package com.justdoit.showcase.airport.service;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,15 @@ import com.justdoit.showcase.base.service.BaseService;
 @Transactional
 public class EmployeeService extends BaseService<Employee, EmployeeDAO>{
 	
+	
+	/**
+	 * 登录
+	 * 
+	 * @param eno
+	 * @param password
+	 * 
+	 * @return
+	 */
 	public Employee login(String eno, String password){
 		Map<String, String> param = new HashMap<String, String>();
 		param.put("eno", eno);
@@ -30,4 +40,33 @@ public class EmployeeService extends BaseService<Employee, EmployeeDAO>{
 		}
 		return null;
 	}
+	
+	/**
+	 * 添加Employee
+	 * 
+	 * @param employee
+	 * @return
+	 */
+	public boolean addEmployee(Employee employee){
+		dao.add(employee);
+		if(dao.findBy("eno", employee.getEno()).size() > 0){
+			return true;
+		}
+		else return false;
+	}
+	
+	
+	/**
+	 * findEmployeeByEno
+	 * 
+	 * @param eno
+	 * @return
+	 */
+	public Employee findEmployeeByEno(String eno){
+		if(dao.findBy("eno", eno).size() > 0){
+			return dao.findBy("eno", eno).get(0);
+		}
+		return null;
+	}
+	
 }
