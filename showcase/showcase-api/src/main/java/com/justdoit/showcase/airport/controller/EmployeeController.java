@@ -79,10 +79,13 @@ public class EmployeeController extends BaseController<Employee, EmployeeService
 
 	@RequestMapping("/updateEmployee")
 	public List<Employee> updateEmployee(Employee employee) {
-
 		employeeService.save(employee);
 		return employeeService.getAll();
-
+	}
+	
+	@RequestMapping("/employeeList")
+	public List<Employee> employeeList(){
+		return employeeService.getAll();
 	}
 
 }
