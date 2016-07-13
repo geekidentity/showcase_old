@@ -3,6 +3,9 @@
  */
 package com.justdoit.showcase.base.controller;
 
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -10,17 +13,22 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.method.HandlerMethod;
 
 import com.justdoit.showcase.base.entity.BaseEntity;
 import com.justdoit.showcase.base.service.BaseService;
+import com.justdoit.showcase.base.util.JSONUtil;
 
 /**
  *
@@ -100,5 +108,40 @@ public abstract class BaseController<T extends BaseEntity<Long>, Service extends
 	@ResponseBody
 	public T detail(@RequestParam("id") long id) {
 		return service.get(id);
+	}
+	
+	@ExceptionHandler
+	public void handleException(HttpServletRequest request,
+			HttpServletResponse response, HandlerMethod handlerMethod, Exception e) {
+		
+		
+		if (e instanceof MissingServletRequestParameterException) {
+			handleMissingServletRequestParameterException(request, response, handlerMethod, e);
+		}
+		
+	}
+	
+	private void handleMissingServletRequestParameterException(HttpServletRequest request,
+			HttpServletResponse response, HandlerMethod handlerMethod, Exception e) {
+		MissingServletRequestParameterException me = (MissingServletRequestParameterException) e;
+		
+		response.setContentType("application/json;charest=UTF-8");
+		response.setStatus(400);
+		PrintWriter out = null;
+		
+		
+		try {
+			out = response.getWriter();
+			Map<Object, Object> msg = new HashMap<>();
+			msg.put("code", "required parameters:" + me.getParameterName());
+			msg.put("error_code", -1);
+			JSONUtil.map2Json(out, msg);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} finally {
+			out.close();
+		}
+		
 	}
 }
