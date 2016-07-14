@@ -20,7 +20,13 @@ public class Employee extends BaseEntity<Long> {
 	private String eno;
 	private String name;
 	private String password;
+	
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="departmentId")
 	private Department department;
+	
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="roleId")
 	private Role role;
 	private String phone;
 	private String email;
@@ -53,8 +59,6 @@ public class Employee extends BaseEntity<Long> {
 		this.password = password;
 	}
 
-	@ManyToOne(cascade={CascadeType.ALL})
-	@JoinColumn(name="departmentId")
 	public Department getDepartment() {
 		return department;
 	}
@@ -63,12 +67,12 @@ public class Employee extends BaseEntity<Long> {
 		this.department = department;
 	}
 
-	@ManyToOne(cascade={CascadeType.ALL})
-	@JoinColumn(name="roleId")
+	
 	public Role getRole() {
 		return role;
 	}
-
+	
+	
 	public void setRole(Role role) {
 		this.role = role;
 	}

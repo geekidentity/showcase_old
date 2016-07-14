@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.justdoit.showcase.airport.entity.Employee;
@@ -78,13 +79,13 @@ public class EmployeeController extends BaseController<Employee, EmployeeService
 	}
 
 	@RequestMapping("/updateEmployee")
-	public List<Employee> updateEmployee(Employee employee) {
+	public Object updateEmployee(Employee employee) {
 		employeeService.save(employee);
 		return employeeService.getAll();
 	}
 	
 	@RequestMapping("/employeeList")
-	public List<Employee> employeeList(){
+	public Object employeeList(){
 		return employeeService.getAll();
 	}
 

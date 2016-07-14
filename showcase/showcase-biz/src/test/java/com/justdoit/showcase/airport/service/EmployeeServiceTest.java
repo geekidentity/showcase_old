@@ -70,7 +70,6 @@ public class EmployeeServiceTest extends BaseTest {
 	 */
 	@Test
 	@Transactional
-	@Ignore
 	public void testFindEmployeeByEno(){
 		Employee employee = employeeService.findEmployeeByEno("009");
 		System.out.println(employee);

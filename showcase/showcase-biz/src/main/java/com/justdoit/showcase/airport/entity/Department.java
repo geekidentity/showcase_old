@@ -1,6 +1,10 @@
 package com.justdoit.showcase.airport.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+
+import com.justdoit.showcase.base.entity.BaseEntity;
 
 /**
  * 
@@ -8,8 +12,14 @@ import javax.persistence.Entity;
  * @date 2016年7月13日 下午2:25:35
  */
 @Entity
-public class Department {
+public class Department extends BaseEntity<Long> {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8728168827111858301L;
+	
+	
 	private String name;
 	private String phone;
 	private String email;
