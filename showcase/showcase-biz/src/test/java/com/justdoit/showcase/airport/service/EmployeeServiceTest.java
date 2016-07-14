@@ -75,4 +75,13 @@ public class EmployeeServiceTest extends BaseTest {
 		Employee employee = employeeService.findEmployeeByEno("009");
 		System.out.println(employee);
 	}
+	
+	@Test
+	public void testUpdate() {
+		Employee employee = new Employee();
+		employee.setEno("007");
+		employee.setName("zhangsan");
+		employee.setPassword("zhangsan");
+		employeeService.save(employee);
+	}
 }

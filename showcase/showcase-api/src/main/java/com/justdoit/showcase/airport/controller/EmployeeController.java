@@ -47,7 +47,7 @@ public class EmployeeController extends BaseController<Employee, EmployeeService
 	}
 
 	@RequestMapping("/addEmployee")
-	public Object add(Employee employee) {
+	public Object addEmployee(Employee employee) {
 		boolean result = employeeService.addEmployee(employee);
 		if (result) {
 			Map<String, String> response = new HashMap<>();
