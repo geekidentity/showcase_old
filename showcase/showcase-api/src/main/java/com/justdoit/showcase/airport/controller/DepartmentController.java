@@ -1,6 +1,7 @@
 package com.justdoit.showcase.airport.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.justdoit.showcase.airport.entity.Department;
 import com.justdoit.showcase.airport.entity.Employee;
@@ -20,7 +22,7 @@ import com.justdoit.showcase.base.controller.BaseController;
  * @date 2016年7月14日 下午4:00:30
  */
 
-@Controller
+@RestController
 @RequestMapping("/airport/department")
 public class DepartmentController extends BaseController<Department, DepartmentService> {
 
@@ -40,18 +42,18 @@ public class DepartmentController extends BaseController<Department, DepartmentS
 	 */
 	@RequestMapping("/addDepartment")
 	public Object addDepartment(Department department) {
+		Map<String, Object> response = new HashMap<>();
 		Department dept = departmentService.addDept(department);
 		if(dept != null){
-			Map<String, Object> response = new HashMap<>();
-			response.put("code", "0");
-			response.put("msg", dept);
+			response.put("code", "1");
+			response.put("msg", "录入成功");
+			response.put("dept", dept);
 			return response;
 		}
 		else {
-			Map<String, Object> response = new HashMap<>();
-			response.put("code", "1");
-			response.put("msg", "录入失败");
-			return response;		
+			response.put("code", "0");
+			response.put("msg", "录入失败，请重新操作！");
+			return response;
 		}
 	}
 	
@@ -63,8 +65,19 @@ public class DepartmentController extends BaseController<Department, DepartmentS
 	 */
 	@RequestMapping("/updateDepartment")
 	public Object updateDepartment(Department department){
-		departmentService.save(department);
-		return departmentService.getAll();
+		Map<String, Object> response = new HashMap<>();
+		Department dept = departmentService.updateDept(department);
+		if (dept != null) {
+			response.put("code", "1");
+			response.put("msg", "修改成功");
+			response.put("dept", dept);
+			return response;
+		}
+		else {
+			response.put("code", "0");
+			response.put("msg", "修改失败，请重新操作！");
+			return response;
+		}
 	}
 	
 	/**
@@ -75,9 +88,32 @@ public class DepartmentController extends BaseController<Department, DepartmentS
 	 */
 	@RequestMapping("/deleteDepartment")
 	public Object deleteDepartment(@RequestParam("id") Long id){
-		departmentService.delete(id);
-		return departmentService.getAll();
-		
+		Map<String, Object> response = new HashMap<>();
+		if (departmentService.deleteDept(id)) {
+			response.put("code", "1");
+			response.put("msg", "删除成功");
+			return response;	
+		}
+		else {
+			response.put("code", "0");
+			response.put("msg", "删除失败，请重新操作！");
+			return response;
+		}
+	}
+	
+	
+	/**
+	 * 列出全部Department
+	 * @return
+	 */
+	@RequestMapping("/departmentList")
+	public Object listDepartment(){
+		List<Department> deptList = departmentService.listDept();
+		Map<String, Object> response = new HashMap<>();
+			response.put("code", "1");
+			response.put("msg", "显示列表");
+			response.put("deptList", deptList);
+			return response;	
 	}
 
 }

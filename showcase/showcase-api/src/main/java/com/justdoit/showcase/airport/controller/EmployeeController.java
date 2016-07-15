@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.justdoit.showcase.airport.entity.Department;
 import com.justdoit.showcase.airport.entity.Employee;
 import com.justdoit.showcase.airport.service.EmployeeService;
 import com.justdoit.showcase.base.controller.BaseController;
@@ -35,27 +36,30 @@ public class EmployeeController extends BaseController<Employee, EmployeeService
 
 	@RequestMapping("/login")
 	public Object login(@RequestParam("eno") String eno, @RequestParam("password") String password) {
-
+		Map<String, Object> response = new HashMap<>();
 		Employee employee = employeeService.login(eno, password);
-		if (employee == null) {
-			Map<String, String> response = new HashMap<>();
+		if(employee != null){
+			response.put("code", "1");
+			response.put("msg", "登录成功！");
+			response.put("emp", employee);
+			return response;
+		}
+		else {
 			response.put("code", "0");
 			response.put("msg", "用户名或密码错误，请重新输入！");
 			return response;
 		}
-		return employee;
 	}
 
 	@RequestMapping("/addEmployee")
 	public Object addEmployee(Employee employee) {
+		Map<String, Object> response = new HashMap<>();
 		boolean result = employeeService.addEmployee(employee);
 		if (result) {
-			Map<String, String> response = new HashMap<>();
 			response.put("code", "1");
 			response.put("msg", "添加成功");
 			return response;
 		} else {
-			Map<String, String> response = new HashMap<>();
 			response.put("code", "0");
 			response.put("msg", "添加失败！");
 			return response;
@@ -66,12 +70,12 @@ public class EmployeeController extends BaseController<Employee, EmployeeService
 	public Object deleteEmployee(@RequestParam("id") Long id) {
 		employeeService.delete(id);
 		if (employeeService.get(id) != null) {
-			Map<String, String> response = new HashMap<>();
+			Map<String, Object> response = new HashMap<>();
 			response.put("code", "0");
 			response.put("msg", "删除失败");
 			return response;
 		} else {
-			Map<String, String> response = new HashMap<>();
+			Map<String, Object> response = new HashMap<>();
 			response.put("code", "1");
 			response.put("msg", "删除成功");
 			return response;
@@ -86,7 +90,12 @@ public class EmployeeController extends BaseController<Employee, EmployeeService
 	
 	@RequestMapping("/employeeList")
 	public Object employeeList(){
-		return employeeService.getAll();
+		List<Employee> empList = employeeService.empList();
+		Map<String, Object> response = new HashMap<>();
+			response.put("code", "1");
+			response.put("msg", "显示列表");
+			response.put("deptList", empList);
+			return response;	
 	}
 
 }

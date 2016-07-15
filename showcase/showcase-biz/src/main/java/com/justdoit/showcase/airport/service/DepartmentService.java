@@ -55,7 +55,7 @@ public class DepartmentService extends BaseService<Department, DepartmentDAO> {
 	}
 	
 	/**
-	 * 
+	 * delete
 	 * @param id
 	 * @return
 	 */
@@ -67,7 +67,7 @@ public class DepartmentService extends BaseService<Department, DepartmentDAO> {
 	
 	
 	/**
-	 * 
+	 * List
 	 * @return
 	 */
 	public List<Department> listDept(){

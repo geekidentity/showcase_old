@@ -38,7 +38,9 @@ public class EmployeeService extends BaseService<Employee, EmployeeDAO>{
 		if(emp.size() > 0){
 			return emp.get(0);
 		}
-		return null;
+		else{
+			return null;
+		}
 	}
 	
 	/**
@@ -67,6 +69,11 @@ public class EmployeeService extends BaseService<Employee, EmployeeDAO>{
 			return dao.findBy("eno", eno).get(0);
 		}
 		return null;
+	}
+	
+	public List<Employee> empList() {
+		return dao.getAll();
+		
 	}
 	
 }
