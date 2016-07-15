@@ -1,9 +1,6 @@
 package com.justdoit.showcase.airport.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
-
 import com.justdoit.showcase.base.entity.BaseEntity;
 
 /**
