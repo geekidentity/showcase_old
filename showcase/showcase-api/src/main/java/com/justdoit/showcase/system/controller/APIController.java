@@ -29,4 +29,13 @@ public class APIController extends BaseController<APIEntity, APIEntityService> {
 		return null;
 	}
 	
+	/**
+	 * 获取最新发布的5个API
+	 * @return
+	 */
+	@RequestMapping(value="news")
+	public Object getNews() {
+		return service.getNews();
+	}
+	
 }

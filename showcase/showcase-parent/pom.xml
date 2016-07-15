@@ -62,10 +62,19 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-web</artifactId>
-				<version>4.0.3.RELEASE</version>
+				<artifactId>spring-security-core</artifactId>
+				<version>4.1.1.RELEASE</version>
 			</dependency>
-
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>4.1.1.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>4.1.1.RELEASE</version>
+			</dependency>
 
 			<!-- Spring END -->
 
@@ -142,6 +151,20 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<!-- 生成源码 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+						<phase>compile</phase>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -179,4 +202,7 @@
 	</pluginRepositories>
 	<!-- Maven私服配置 END -->
 
+	<modules>
+		<module>?</module>
+	</modules>
 </project>
