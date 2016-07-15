@@ -1,5 +1,6 @@
 package com.justdoit.showcase.system.entity;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,11 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.justdoit.showcase.base.entity.BaseEntity;
 
 @Entity
 @Table(name="sys_user")
-public class UserEntity extends BaseEntity<Long> {
+public class UserEntity extends BaseEntity<Long> implements UserDetails {
 
 	/**
 	 * 
@@ -97,5 +101,38 @@ public class UserEntity extends BaseEntity<Long> {
 	}
 	public void setRole(RoleEntity role) {
 		this.role = role;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getPassword() {
+		return passwd;
+	}
+	@Override
+	public String getUsername() {
+		return loginName;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }
