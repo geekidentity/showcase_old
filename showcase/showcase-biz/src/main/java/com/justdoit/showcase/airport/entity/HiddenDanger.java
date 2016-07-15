@@ -1,3 +1,4 @@
+
 package com.justdoit.showcase.airport.entity;
 
 import javax.persistence.CascadeType;
