@@ -3,6 +3,8 @@ package com.justdoit.showcase.airport.entity;
 
 import javax.persistence.Entity;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import com.justdoit.showcase.base.entity.BaseEntity;
 
 /**
@@ -11,7 +13,7 @@ import com.justdoit.showcase.base.entity.BaseEntity;
  * @date 2016年7月14日 上午10:11:59
  */
 @Entity
-public class Role extends BaseEntity<Long> {
+public class Role extends BaseEntity<Long> implements GrantedAuthority {
 	/**
 	 * 
 	 */
@@ -43,6 +45,16 @@ public class Role extends BaseEntity<Long> {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	/**
+	 * 
+	 * @author 侯法超
+	 * 用户权限，这里用角色名做权限限制
+	 */
+	@Override
+	public String getAuthority() {
+		return name;
 	}
 
 }

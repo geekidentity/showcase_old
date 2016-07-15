@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +22,7 @@ import com.justdoit.showcase.base.service.BaseService;
  */
 @Service
 @Transactional
-public class EmployeeService extends BaseService<Employee, EmployeeDAO>{
+public class EmployeeService extends BaseService<Employee, EmployeeDAO> implements UserDetailsService{
 	
 	
 	/**
@@ -74,6 +77,15 @@ public class EmployeeService extends BaseService<Employee, EmployeeDAO>{
 	public List<Employee> empList() {
 		return dao.getAll();
 		
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		List<Employee> list = dao.findBy("eno", username);
+		if (list.size() > 0) {
+			System.out.println(list.size());
+		}
+		return list.get(0);
 	}
 	
 }
