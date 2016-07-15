@@ -1,5 +1,8 @@
 package com.justdoit.showcase.airport.service;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,25 +21,57 @@ import com.justdoit.showcase.base.service.BaseService;
 @Transactional
 public class DepartmentService extends BaseService<Department, DepartmentDAO> {	
 	
-	@Autowired
-	protected DepartmentService departmentService;
+	
 	
 	/**
-	 * 添加
+	 * add
 	 * 
 	 * @param department
 	 * @return
 	 */
 	public Department addDept(Department department){
-		departmentService.add(department);
-		if(departmentService.get(department.getId()) != null){
+		dao.add(department);
+		if(dao.get(department.getId()) != null){
 			return department;
 		}
 		else return null;
 	}
 	
-	public void updateDept(Department department){
-		departmentService.save(department);
+	/**
+	 * update
+	 * 
+	 * @param department
+	 * @return
+	 */
+	public Department updateDept(Department department){
+		try{
+			dao.save(department);
+			return department;
+		}catch(Exception exception){
+			exception.printStackTrace();
+			System.out.println("error is:" + exception.getMessage());
+			return null;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean deleteDept(Long id){
+		dao.delete(id);
+		if(dao.get(id) == null) return true;
+		else return false;
+	}
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Department> listDept(){
+		return dao.getAll();
 	}
 
 }

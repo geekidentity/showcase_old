@@ -1,17 +1,21 @@
 package com.justdoit.showcase.airport.service;
 
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.justdoit.showcase.airport.entity.Employee;
 import com.justdoit.showcase.base.BaseTest;
+
+/**
+ * 
+ * @author Mr.Chen
+ * @date 2016年7月15日 上午8:40:48
+ */
 
 public class EmployeeServiceTest extends BaseTest {
 	
@@ -77,6 +81,8 @@ public class EmployeeServiceTest extends BaseTest {
 	}
 	
 	@Test
+	@Transactional
+	@Ignore
 	public void testUpdate() {
 		Employee employee = new Employee();
 		employee.setEno("007");
