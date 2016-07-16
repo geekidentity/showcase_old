@@ -1,5 +1,8 @@
 package com.justdoit.showcase.airport.service;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,4 +20,5 @@ import com.justdoit.showcase.base.service.BaseService;
 @Transactional
 public class HiddenDangerService extends BaseService<HiddenDanger, HiddenDangerDAO> {
 
+	
 }
