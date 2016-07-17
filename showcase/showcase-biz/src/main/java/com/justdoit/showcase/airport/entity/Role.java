@@ -20,6 +20,7 @@ public class Role extends BaseEntity<Long> implements GrantedAuthority {
 	private static final long serialVersionUID = -384719586959547518L;
 	
 	private String name;
+	private String level;
 	private int departmentId;
 	private String description;
 
@@ -46,6 +47,13 @@ public class Role extends BaseEntity<Long> implements GrantedAuthority {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
 	
 	/**
 	 * 
@@ -54,7 +62,11 @@ public class Role extends BaseEntity<Long> implements GrantedAuthority {
 	 */
 	@Override
 	public String getAuthority() {
-		return name;
+		return level;
 	}
+
+	
+
+	
 
 }
