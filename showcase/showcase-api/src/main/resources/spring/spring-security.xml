@@ -6,23 +6,23 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
-	<http use-expressions="true">
-		<custom-filter ref="jsonLoginPage" position="LOGIN_PAGE_FILTER"/>
+	<http auto-config="true" use-expressions="true">
+		<!-- <custom-filter ref="jsonLoginPage" position="LOGIN_PAGE_FILTER"/> -->
 		<intercept-url pattern="/security" access="hasRole('SUPER_ADMIN')" />
 		<form-login authentication-success-handler-ref="authSuccessHandler" 
 			username-parameter="eno" password-parameter="password"
-			authentication-failure-handler-ref="authFailureHandler" login-page="/login" />
+			authentication-failure-handler-ref="authFailureHandler"/>
 		<remember-me />
-		<logout logout-url="/logout"/>
+		<logout/>
 		<csrf disabled="true"/>
 	</http>
 	
 	<authentication-manager>
-		<authentication-provider ref="jaasAuthenticationProvider">
+		<authentication-provider user-service-ref="employeeService">
 		</authentication-provider>
 	</authentication-manager>
 
-	<beans:bean id="jaasAuthenticationProvider"
+	<!-- <beans:bean id="jaasAuthenticationProvider"
 		class="org.springframework.security.authentication.jaas.JaasAuthenticationProvider">
 		<beans:property name="loginConfig" value="/WEB-INF/login.conf" />
 		<beans:property name="loginContextName" value="JAAS" />
@@ -40,7 +40,7 @@
 					class="com.justdoit.showcase.base.security.jaas.DefaultAuthorityGranters" />
 			</beans:list>
 		</beans:property>
-	</beans:bean>
+	</beans:bean> -->
 
 
 </beans:beans>

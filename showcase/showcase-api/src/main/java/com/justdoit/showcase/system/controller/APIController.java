@@ -35,7 +35,7 @@ public class APIController extends BaseController<APIEntity, APIEntityService> {
 	 * 获取最新发布的5个API
 	 * @return
 	 */
-	@Secured({"ROLE_ADMIN"})
+	@Secured({"ROLE_SUPER_ADMIN"})
 	@RequestMapping(value="news")
 	public Object getNews() {
 		return service.getNews();

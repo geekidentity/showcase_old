@@ -20,7 +20,7 @@ import com.justdoit.showcase.base.service.BaseService;
  * @author Mr.Chen
  * 
  */
-@Service
+@Service("employeeService")
 @Transactional
 public class EmployeeService extends BaseService<Employee, EmployeeDAO> implements UserDetailsService{
 	

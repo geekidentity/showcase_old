@@ -153,7 +153,7 @@ public class Employee extends BaseEntity<Long> implements UserDetails {
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return status == 1;
+		return true;
 	}
 
 	@Override
@@ -164,7 +164,7 @@ public class Employee extends BaseEntity<Long> implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return status == 1;
+		return true;
 	}
 
 }

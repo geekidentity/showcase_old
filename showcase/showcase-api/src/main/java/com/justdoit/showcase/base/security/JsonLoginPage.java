@@ -21,7 +21,7 @@ import com.justdoit.showcase.base.controller.BaseController;
  * @date  2016年7月18日  上午8:04:28
  *
  */
-@Component
+
 public class JsonLoginPage extends GenericFilterBean {
 	public static final String DEFAULT_LOGIN_PAGE_URL = "/login";
 	public static final String ERROR_PARAMETER_NAME = "error";
