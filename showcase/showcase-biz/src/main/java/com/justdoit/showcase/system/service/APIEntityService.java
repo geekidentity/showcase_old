@@ -8,6 +8,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +25,7 @@ import com.justdoit.showcase.system.entity.APIEntity;
 @Service
 @Transactional
 public class APIEntityService extends BaseService<APIEntity, APIEntityDao> {
-
+	
 	@SuppressWarnings("unchecked")
 	public List<APIEntity> getNews() {
 		Criterion deprecated = Restrictions.eq("deprecated", 1);

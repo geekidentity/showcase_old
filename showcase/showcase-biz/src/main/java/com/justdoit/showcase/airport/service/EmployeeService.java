@@ -84,8 +84,11 @@ public class EmployeeService extends BaseService<Employee, EmployeeDAO> implemen
 		List<Employee> list = dao.findBy("eno", username);
 		if (list.size() > 0) {
 			System.out.println(list.size());
+			return list.get(0);
+		} else {
+			throw new UsernameNotFoundException("No user:" + username);
 		}
-		return list.get(0);
+		
 	}
 	
 }
