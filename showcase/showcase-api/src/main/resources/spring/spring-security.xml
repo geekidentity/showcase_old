@@ -7,12 +7,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
 	<http use-expressions="true">
+		<custom-filter ref="jsonLoginPage" position="LOGIN_PAGE_FILTER"/>
 		<intercept-url pattern="/security" access="hasRole('ROLE_USER')" />
-		<form-login authentication-success-handler-ref="authSuccessHandler"
-			authentication-failure-handler-ref="authFailureHandler" />
-		<http-basic />
+		<form-login authentication-success-handler-ref="authSuccessHandler" 
+			username-parameter="eno" password-parameter="password"
+			authentication-failure-handler-ref="authFailureHandler" login-page="/login" />
 		<remember-me />
 		<logout logout-url="/logout"/>
+		<csrf disabled="true"/>
 	</http>
 	<global-method-security jsr250-annotations="enabled"></global-method-security>
 	<authentication-manager>

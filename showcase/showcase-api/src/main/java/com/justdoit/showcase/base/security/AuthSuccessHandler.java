@@ -9,10 +9,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.justdoit.showcase.airport.entity.Employee;
+import com.justdoit.showcase.airport.service.EmployeeService;
 import com.justdoit.showcase.base.util.JSONUtil;
 
 /**
@@ -22,17 +25,22 @@ import com.justdoit.showcase.base.util.JSONUtil;
  */
 @Component
 public class AuthSuccessHandler implements AuthenticationSuccessHandler {
+	
+	@Autowired
+	private EmployeeService employeeService;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		Map<Object, Object> msg = new HashMap<>();
+		Employee employee = (Employee) employeeService.loadUserByUsername(request.getParameter("eno"));
 		if (authentication.isAuthenticated()) {
 			msg.put("code", 1);
-			msg.put("user", authentication.getDetails());
+			msg.put("user", employee);
 		}
 		response.setContentType("application/json;charset=UTF-8");
-
+		
+		request.getSession().setAttribute("curUser", employee);
 		PrintWriter out = response.getWriter();
 		JSONUtil.map2Json(out, msg);
 		out.close();

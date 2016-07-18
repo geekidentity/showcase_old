@@ -162,6 +162,7 @@ public abstract class BaseController<T extends BaseEntity<Long>, Service extends
 	 */
 	public static void responseError(int code, String msg, int status, HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("application/json;charest=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		response.setStatus(status);
 		PrintWriter out = null;
 		try {
