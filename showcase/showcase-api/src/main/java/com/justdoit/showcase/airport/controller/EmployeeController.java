@@ -43,86 +43,16 @@ public class EmployeeController extends BaseController<Employee, EmployeeService
 		return "hello";
 	}
 
-	@RequestMapping("/login")
-	public Object login( @RequestParam(value = "eno", required = false,defaultValue="0") String eno, 
-						  @RequestParam(value = "password", required = false, defaultValue=" ") String password, 
-						  ModelMap modelMap, HttpSession httpSession) {
-		Map<String, Object> response = new HashMap<>();
-		Employee employee = employeeService.login(eno, password);
-		if(httpSession.getAttribute("eno") != null){
-			response.put("code", "1");
-			response.put("msg", "登录成功！");
-			//response.put("emp", employee);
-			return response;
-			
-		}
-		else if(employee != null){
-			httpSession.setAttribute("eno", eno);
-			modelMap.addAttribute("emp",httpSession);
-			response.put("code", "1");
-			response.put("msg", "登录成功！");
-			response.put("emp", employee);
-			return response;
-		}else {
-			response.put("code", "0");
-			response.put("msg", "用户名或密码错误，请重新输入！");
-			return response;
-		}
-	}
-	
-	@RequestMapping("/logout")
-	public Object logout(HttpServletRequest request, @ModelAttribute("emp") HttpSession httpSession){
-		//清除session
-		Enumeration<String> em = request.getSession().getAttributeNames();
-		while(em.hasMoreElements()){
-			request.getSession().removeAttribute(em.nextElement().toString());
-		}
-		//System.out.println(em.nextElement().toString());
-		request.getSession().removeAttribute("emp");
-		request.getSession().invalidate();
-		Map<String, Object> response = new HashMap<>();
-		response.put("code", "1");
-		response.put("msg", "注销成功。");
-		System.out.println(response);
-		return response;
-		
+	@Secured({Role.SUPER_ADMIN,Role.ADMIN})
+	@Override
+	public Map<String, Object> save(Employee t) {
+		return super.save(t);
 	}
 
-	@RequestMapping("/addEmployee")
-	public Object addEmployee(Employee employee) {
-		Map<String, Object> response = new HashMap<>();
-		boolean result = employeeService.addEmployee(employee);
-		if (result) {
-			response.put("code", "1");
-			response.put("msg", "添加成功");
-			return response;
-		} else {
-			response.put("code", "0");
-			response.put("msg", "添加失败！");
-			return response;
-		}
-	}
-
-	@RequestMapping("/deleteEmployee")
-	public Object deleteEmployee(@RequestParam("id") Long id) {
-		employeeService.delete(id);
-		if (employeeService.get(id) != null) {
-			Map<String, Object> response = new HashMap<>();
-			response.put("code", "0");
-			response.put("msg", "删除失败");
-			return response;
-		} else {
-			Map<String, Object> response = new HashMap<>();
-			response.put("code", "1");
-			response.put("msg", "删除成功");
-			return response;
-		}
-	}
-
-	@RequestMapping("/updateEmployee")
-	public Object updateEmployee(Employee employee) {
-		employeeService.save(employee);
-		return employeeService.getAll();
+	@Secured({Role.SUPER_ADMIN,Role.ADMIN})
+	@Override
+	public Map<String, Object> delete(long id) {
+		return super.delete(id);
 	}
 	
 	@Secured({Role.ADMIN})

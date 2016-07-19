@@ -42,7 +42,7 @@ public class DepartmentController extends BaseController<Department, DepartmentS
 	 * @param department
 	 * @return
 	 */
-	@RequestMapping("/addDepartment")
+	@RequestMapping(value = "/addDepartment")
 	public Object addDepartment(Department department) {
 		Map<String, Object> response = new HashMap<>();
 		Department dept = departmentService.addDept(department);
@@ -58,6 +58,8 @@ public class DepartmentController extends BaseController<Department, DepartmentS
 			return response;
 		}
 	}
+	
+	
 	
 	/**
 	 * 修改

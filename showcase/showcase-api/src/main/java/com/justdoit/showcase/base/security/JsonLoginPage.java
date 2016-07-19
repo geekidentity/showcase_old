@@ -9,6 +9,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -28,7 +30,6 @@ public class JsonLoginPage extends GenericFilterBean {
 	private String loginPageUrl;
 	private boolean formLoginEnabled;
 	private boolean openIdEnabled;
-
 	public JsonLoginPage() {
 		this.loginPageUrl = DEFAULT_LOGIN_PAGE_URL;
 	}

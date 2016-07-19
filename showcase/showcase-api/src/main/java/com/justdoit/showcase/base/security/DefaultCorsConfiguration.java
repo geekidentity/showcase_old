@@ -15,7 +15,7 @@ public class DefaultCorsConfiguration  implements CorsConfigurationSource  {
 		configuration.addAllowedHeader("*");
 		configuration.addAllowedMethod("*");
 		configuration.addAllowedOrigin("*");
-		return null;
+		return configuration;
 	}
 	
 }
