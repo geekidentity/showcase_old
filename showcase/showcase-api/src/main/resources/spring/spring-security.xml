@@ -13,6 +13,7 @@
 			username-parameter="eno" password-parameter="password"
 			authentication-failure-handler-ref="authFailureHandler"/>
 		<remember-me />
+		<cors configuration-source-ref="defaultCorsConfiguration"/>
 		<logout/>
 		<csrf disabled="true"/>
 	</http>
