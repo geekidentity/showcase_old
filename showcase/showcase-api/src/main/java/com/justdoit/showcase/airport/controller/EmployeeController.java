@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -38,11 +39,12 @@ public class EmployeeController extends BaseController<Employee, EmployeeService
 	public String index(Model model) {
 		return "hello";
 	}
-
+	
 	@Secured({Role.SUPER_ADMIN,Role.ADMIN})
 	@Override
-	public Map<String, Object> save(Employee t) {
-		return super.save(t);
+	public Map<String, Object> save(Employee t, BindingResult result) {
+		// TODO Auto-generated method stub
+		return super.save(t, result);
 	}
 
 	@Secured({Role.SUPER_ADMIN,Role.ADMIN})

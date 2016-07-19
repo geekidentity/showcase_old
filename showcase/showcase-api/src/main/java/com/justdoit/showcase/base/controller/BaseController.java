@@ -12,10 +12,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,6 +40,7 @@ import com.justdoit.showcase.base.util.JSONUtil;
  */
 public abstract class BaseController<T extends BaseEntity<Long>, Service extends BaseService<T, ?>> {
 	
+	protected static Logger logger = Logger.getLogger(BaseController.class);
 	@Autowired
 	protected Service service;
 	
@@ -51,7 +54,9 @@ public abstract class BaseController<T extends BaseEntity<Long>, Service extends
 	
 	@RequestMapping(value="/save")
 	@ResponseBody
-	public Map<String, Object> save(@ModelAttribute("T") T t) {
+	public Map<String, Object> save(@ModelAttribute("T") T t, BindingResult result) {
+		logger.debug(result);
+		logger.debug("add something:" + t);
 		if (t.getId() != null) {
 			T temp = service.get(t.getId());
 			BeanUtils.copyProperties(t, temp);
