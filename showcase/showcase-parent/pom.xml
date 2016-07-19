@@ -130,12 +130,12 @@
 		<repository>
 			<id>JustDoIT</id>
 			<name>JustDoIT release repository</name>
-			<url>http://10.18.34.234:8081/nexus/content/repositories/justdoit-release/</url>
+			<url>http://10.18.34.237:8081/nexus/content/repositories/justdoit-release/</url>
 		</repository>
 		<snapshotRepository>
 			<id>JustDoIT</id>
 			<name>JustDoIT snapshot repository</name>
-			<url>http://10.18.34.234:8081/nexus/content/repositories/justdoit-snapshots/</url>
+			<url>http://10.18.34.237:8081/nexus/content/repositories/justdoit-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<build>
@@ -176,7 +176,7 @@
 			<id>nexus</id>
 			<name>Nexus</name>
 			<!-- <url>http://211.87.147.138:8081/nexus/content/groups/public/</url> -->
-			<url>http://10.18.34.234:8081/nexus/content/groups/public/</url>
+			<url>http://10.18.34.237:8081/nexus/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -191,7 +191,7 @@
 			<id>nexus</id>
 			<name>Nexus</name>
 			<!-- <url>http://211.87.147.138:8081/nexus/content/groups/public/</url> -->
-			<url>http://10.18.34.234:8081/nexus/content/groups/public/</url>
+			<url>http://10.18.34.237:8081/nexus/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
