@@ -12,9 +12,10 @@ public class DefaultCorsConfiguration  implements CorsConfigurationSource  {
 	@Override
 	public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.addAllowedHeader("*");
+		configuration.addAllowedHeader(request.getHeader("Origin"));
 		configuration.addAllowedMethod("*");
 		configuration.addAllowedOrigin("*");
+		configuration.setAllowCredentials(true);
 		return configuration;
 	}
 	
