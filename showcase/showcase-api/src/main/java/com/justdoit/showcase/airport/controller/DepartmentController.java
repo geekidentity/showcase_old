@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.justdoit.showcase.airport.entity.Department;
 import com.justdoit.showcase.airport.entity.Employee;
+import com.justdoit.showcase.airport.entity.Role;
 import com.justdoit.showcase.airport.service.DepartmentService;
 import com.justdoit.showcase.base.controller.BaseController;
 
@@ -106,6 +108,7 @@ public class DepartmentController extends BaseController<Department, DepartmentS
 	 * 列出全部Department
 	 * @return
 	 */
+	@Secured({Role.SUPER_ADMIN})
 	@RequestMapping("/departmentList")
 	public Object listDepartment(){
 		List<Department> deptList = departmentService.listDept();

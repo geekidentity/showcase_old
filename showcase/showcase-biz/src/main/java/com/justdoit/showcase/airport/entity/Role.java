@@ -14,6 +14,16 @@ import com.justdoit.showcase.base.entity.BaseEntity;
  */
 @Entity
 public class Role extends BaseEntity<Long> implements GrantedAuthority {
+	//超级管理员
+	public static final String SUPER_ADMIN = "ROLE_SUPER_ADMIN";
+	//部门管理员
+	public static final String ADMIN = "ROLE_ADMIN";
+	//上报人员
+	public static final String REPORTOR = "ROLE_REPORTOR";
+	//监管人员
+	public static final String SUPERVISOR = "ROLE_SUPERVISOR";
+	//整改人员
+	public static final String REPAIRER = "ROLE_REPAIRER";
 	/**
 	 * 
 	 */

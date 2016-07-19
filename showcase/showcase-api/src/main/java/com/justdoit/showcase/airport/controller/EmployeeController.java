@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.justdoit.showcase.airport.entity.Employee;
+import com.justdoit.showcase.airport.entity.Role;
 import com.justdoit.showcase.airport.service.EmployeeService;
 import com.justdoit.showcase.base.controller.BaseController;
 
@@ -123,6 +125,7 @@ public class EmployeeController extends BaseController<Employee, EmployeeService
 		return employeeService.getAll();
 	}
 	
+	@Secured({Role.ADMIN})
 	@RequestMapping("/employeeList")
 	public Object employeeList(){
 		List<Employee> empList = employeeService.empList();
