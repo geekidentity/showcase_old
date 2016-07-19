@@ -1,7 +1,4 @@
-﻿/**
- * 
- */
-package com.justdoit.showcase.base.controller;
+﻿package com.justdoit.showcase.base.controller;
 
 
 import java.io.IOException;
