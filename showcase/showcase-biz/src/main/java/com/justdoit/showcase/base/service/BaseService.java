@@ -61,4 +61,8 @@ public abstract class BaseService<T, DAO extends HibernateBaseDao<T, Long>> {
 		return dao.findByParams(params);
 	}
 	
+	public List<T> findBy(String propertyName, Object value) {
+		return dao.findBy(propertyName, value);
+	}
+	
 }
