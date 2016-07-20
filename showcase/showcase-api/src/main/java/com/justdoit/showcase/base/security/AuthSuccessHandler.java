@@ -37,7 +37,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 		if (authentication.isAuthenticated()) {
 			msg.put("code", 1);
 			msg.put("user", employee);
-			msg.put("sessionid", authentication);
+			msg.put("sessionid", authentication.getDetails());
 		}
 		response.setContentType("application/json;charset=UTF-8");
 		
