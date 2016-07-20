@@ -61,8 +61,36 @@ public abstract class BaseService<T, DAO extends HibernateBaseDao<T, Long>> {
 		return dao.findByParams(params);
 	}
 	
+	/**
+	 * 根据属性Map查找一个对象，将返回找到的第一个，如果没有返回 NULL
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public T findOneByParams(Map<String, String> params) {
+		List<T> list = dao.findByParams(params);
+		if (list.isEmpty()) {
+			return null;
+		}
+		return list.get(0);
+	}
+	
 	public List<T> findBy(String propertyName, Object value) {
 		return dao.findBy(propertyName, value);
+	}
+	
+	/**
+	 * 根据属性查找一个对象，将返回找到的第一个，如果没有返回 NULL
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public T findOneBy(String propertyName, Object value) {
+		List<T> list = dao.findBy(propertyName, value);
+		if (list.isEmpty()) {
+			return null;
+		}
+		return list.get(0);
 	}
 	
 }
