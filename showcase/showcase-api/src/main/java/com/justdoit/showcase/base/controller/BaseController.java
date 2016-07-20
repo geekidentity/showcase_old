@@ -151,6 +151,7 @@ public abstract class BaseController<T extends BaseEntity<Long>, Service extends
 	
 	private void handleUnknowException(HttpServletRequest request,
 			HttpServletResponse response, HandlerMethod handlerMethod, Exception e) {
+		logger.debug("unknow exception:", e);
 		responseError(500, e.getMessage(), 500, request, response);
 	}
 	
